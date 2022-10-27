@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 public class Square {
     public static void main(String[] args) {
         List<List<Integer>> square = new ArrayList<>();
@@ -10,11 +11,13 @@ public class Square {
 
         int result = formingMagicSquare(square);
         System.out.println(result);
-    }
+       
+        }
     /*
         * Code by: Hiram Yadzael Vargas Chalico
         * formingMagicSquarefunction
         * Hope it work!
+        * I already mooving to another file, I'll use OOP
 
         * 26/10/2022
     */
