@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Stream;
 
 public class SquarePoo {
     List<List<Integer>> cube = new ArrayList<>();
@@ -79,15 +80,18 @@ public int getNumber_to_magic() {
         System.out.println(cube.getDimention());
         System.out.println(cube.getNumber_to_magic());
     
-        List<Integer> aux = new ArrayList<>();
-        aux.add(0);
-        aux.add(1);
+        // List<Integer> aux = new ArrayList<>();
+        // aux.add(0);
+        // aux.add(1);
+        // System.out.println(cube.cube);
+        // System.out.println(cube.missingList());
+        // cube.modify_el(aux, 9);
         System.out.println(cube.cube);
         System.out.println(cube.missingList());
-        cube.modify_el(aux, 9);
-        System.out.println(cube.cube);
-        System.out.println(cube.missingList());
-        cube.get_p_t();
+        List<List<Integer>> list_of_all = cube.get_p_t();
+        List<List<Integer>> n_lis = Stream.concat(cube.cube.stream(),list_of_all.stream()).toList();
+        System.out.println(n_lis);
+        System.out.println(total_arr_sum(n_lis));
         return 1;
 
     }else{
@@ -99,11 +103,9 @@ public int getNumber_to_magic() {
     //-- Function to get the total sum of all arrays
     public static List<Integer> total_arr_sum(List<List<Integer>> s){
         List<Integer> ret = new ArrayList<>();
-        int limit = s.size()*2+2;
-        int i = 0;
-        while( i < limit){
-         System.out.println(i);
-         i++;
+        for(List<Integer> lis : s){
+            int aux = arraySum(lis);
+            ret.add(aux);
         }
         return ret;
      }
@@ -148,7 +150,25 @@ public int getNumber_to_magic() {
                 k++;
            }
            
-       }
+        }
+        //diagonal
+        List<Integer> aux2 = new ArrayList<>();
+        for(List<Integer> diagLis : cube){
+            int ind = cube.indexOf(diagLis);
+            aux2.add(cube.get(ind).get(ind));
+        }
+        aux.add(aux2);
+        //diagonal invert
+        List<Integer> aux3 = new ArrayList<>();
+        int w = size-1;
+        int j = 0;
+        while(w >= 0){
+            aux3.add(cube.get(j).get(w));
+            j++;
+            w--;
+        }
+        aux.add(aux3);
+
         System.out.println(aux);
         return aux;
     }
